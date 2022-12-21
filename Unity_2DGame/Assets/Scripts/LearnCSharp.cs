@@ -10,13 +10,21 @@ public class LearnCSharp : MonoBehaviour
     private float speed = 1.5f;
     private bool mission = false;
     private Vector3 posStart = new Vector3(30, 1, 50);
+    private Rigidbody2D rig;
+
+    private void Update()
+    {
+        Move();
+    }
 
     /// <summary>
     /// 移動方法
     /// </summary>
     public void Move()
     {
-
+        float ad = Input.GetAxis("Horizontal");
+        
+        rig.velocity = new Vector2(ad, rig.velocity.y);
     }
 
     /// <summary>
@@ -33,7 +41,7 @@ public class LearnCSharp : MonoBehaviour
     /// </summary>
     /// <param name="height">跳躍高度</param>
     /// <param name="aniName">動畫名稱</param>
-    public void jump(float height,string aniName)
+    public void jump(float height, string aniName)
     {
 
     }
