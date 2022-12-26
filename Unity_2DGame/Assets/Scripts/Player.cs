@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    [Header("跳躍力")]
+    [Header("跳躍力道"),Range(1f,10f)]
     [SerializeField] float jumpPower = 5.5f;
     public Transform traPlayer;
     [Header("移動速度"), Range(0f, 100f)]
@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     [SerializeField] float radius = 0.3f;
     [Header("地板")]
     [SerializeField] GameObject floor;
-
 
     private Rigidbody2D rig;
     private Animator ani;

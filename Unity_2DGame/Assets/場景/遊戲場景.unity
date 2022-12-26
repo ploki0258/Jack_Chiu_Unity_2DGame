@@ -945,7 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9106e13452e8ed47aa22dd0cf6357e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 5.5
+  jumpPower: 10
   traPlayer: {fileID: 796424951}
   runSpeed: 10
   life: 3
