@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [Header("跳躍力道"),Range(1f,10f)]
+    [Header("跳躍力道"), Range(1f, 10f)]
     [SerializeField] float jumpPower = 5.5f;
     public Transform traPlayer;
     [Header("移動速度"), Range(0f, 100f)]
@@ -22,17 +22,27 @@ public class Player : MonoBehaviour
     private Rigidbody2D rig;
     private Animator ani;
     private SpriteRenderer spr;
+    private float hp = 100;
+    private float hpMax;
+    private Image hpHeart_1;
+    private Image hpHeart_2;
+    private Image hpHeart_3;
+    private GameManager gm;
 
     private void Awake()
     {
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
+        gm = FindObjectOfType<GameManager>();
     }
 
     private void Start()
     {
-
+        hpMax = hp;
+        hpHeart_1 = GameObject.Find("愛心1").GetComponent<Image>();
+        hpHeart_2 = GameObject.Find("愛心2").GetComponent<Image>();
+        hpHeart_3 = GameObject.Find("愛心3").GetComponent<Image>();
     }
 
     private void Update()
@@ -49,7 +59,7 @@ public class Player : MonoBehaviour
         float ad = Input.GetAxis("Horizontal"); // 取得水平值
 
         rig.velocity = new Vector2(ad * runSpeed, rig.velocity.y);
-        
+
         ani.SetBool("跑步開關", ad != 0);
 
         // 如果 按下D或右鍵
@@ -90,6 +100,39 @@ public class Player : MonoBehaviour
         ani.SetBool("跳躍開關", isGrounded == false);
     }
 
+    /// <summary>
+    /// 死亡方法：死亡動畫、關閉腳本
+    /// </summary>
+    public void Dead()
+    {
+        // 動畫.設定觸發("參數名稱")
+        ani.SetTrigger("死亡觸發");
+        // 關閉腳本
+        this.enabled = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 如果碰到tag = "trap"的物件
+        if (collision.tag == "trap")
+        {
+            // 如果 life >= 0，就執行gm裡的PlayerDead方法
+            if (GameManager.life >= 0)
+            {
+                gm.PlayerDead();
+            }
+
+            // 如果 life 為 0，就執行Dead方法
+            if (GameManager.life == 0)
+            {
+                Dead();
+            }
+        }
+
+        // 刪除(碰到物件.遊戲物件)
+        Destroy(collision.gameObject);
+    }
+
     // 繪製圖示
     private void OnDrawGizmos()
     {
@@ -103,8 +146,5 @@ public class Player : MonoBehaviour
     //{
     //    isGrounded = Physics.Raycast(this.transform.position, Vector2.down, 99.0f);
     //}
-
-
-
 
 }
