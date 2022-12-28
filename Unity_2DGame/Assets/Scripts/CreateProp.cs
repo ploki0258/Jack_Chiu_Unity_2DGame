@@ -8,7 +8,7 @@ public class CreateProp : MonoBehaviour
     [SerializeField] float xMin;
     [Header("X軸最大值")]
     [SerializeField] float xMax;
-    [Header("生成頻率"), Range(0.1f, 3f)]
+    [Header("生成頻率"), Range(0.1f, 10f)]
     public float interval = 1.0f;
 
     /// <summary>

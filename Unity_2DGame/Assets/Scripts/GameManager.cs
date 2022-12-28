@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     public static int life = 3;
     public static int time;
+    public static int score = 0;
 
     private void Awake()
     {

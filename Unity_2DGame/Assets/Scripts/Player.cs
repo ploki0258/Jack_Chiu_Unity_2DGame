@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     [SerializeField] float radius = 0.3f;
     [Header("地板")]
     [SerializeField] GameObject floor;
+    [Header("分數文字介面")]
+    [SerializeField] Text textScore;
+    [Header("分數")]
+    [SerializeField] int score = 0;
 
     private Rigidbody2D rig;
     private Animator ani;
@@ -40,6 +44,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         hpMax = hp;
+        textScore.text = score.ToString();
         hpHeart_1 = GameObject.Find("愛心1").GetComponent<Image>();
         hpHeart_2 = GameObject.Find("愛心2").GetComponent<Image>();
         hpHeart_3 = GameObject.Find("愛心3").GetComponent<Image>();
@@ -127,6 +132,11 @@ public class Player : MonoBehaviour
             {
                 Dead();
             }
+        }
+
+        if (collision.tag == "gem")
+        {
+            textScore.text = "× " + score++;
         }
 
         // 刪除(碰到物件.遊戲物件)
