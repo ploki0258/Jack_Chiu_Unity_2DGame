@@ -24,10 +24,9 @@ public class Player : MonoBehaviour
     private Rigidbody2D rig;
     private Animator ani;
     private SpriteRenderer spr;
-    private float hp = 100;
-    private float hpMax;
     private bool dead;
     private GameManager gm;
+    // private float hp = 100;
 
     private void Awake()
     {
@@ -39,13 +38,14 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        hpMax = hp;
+        // hpMax = hp;
     }
 
     private void Update()
     {
         Move();
         jump();
+        AddScore(0);
     }
 
     /// <summary>
@@ -128,14 +128,39 @@ public class Player : MonoBehaviour
             }
         }
 
+        // 如果碰到tag = "gem"的物件
         if (collision.tag == "gem")
         {
-            // textScore.text = "× " + score++;
+            score += 10;
+            textScore.text = "× " + score;
+        }
+
+        if (collision.tag == "heart")
+        {
+            GameManager.life++;
+            float life = Mathf.Clamp(GameManager.life, 0f, 3f);
         }
 
         // 刪除(碰到物件.遊戲物件)
         Destroy(collision.gameObject);
     }
+
+    /// <summary>
+    /// 添加分數與更新分數介面
+    /// </summary>
+    /// <param name="add">要添加多少分數</param>
+    public void AddScore(int add)
+    {
+        score += add;
+        textScore.text = "× " + score;
+    }
+
+    int score
+    {
+        get { return _score; } // 讀取
+        set { _score = value; } // 寫入
+    }
+    int _score = 0;
 
     // 繪製圖示
     private void OnDrawGizmos()

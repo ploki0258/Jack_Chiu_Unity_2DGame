@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public void Update()
     {
         Updatetime();
+        //AddScore(0);
     }
 
     /// <summary>
@@ -59,7 +60,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Quit()
     {
-        Application.Quit();
+        Application.Quit(); // 應用程式.離開()
     }
 
     /// <summary>
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Replay()
     {
-        SceneManager.LoadScene("選單");
+        SceneManager.LoadScene("選單"); // 場景管理器.載入場景("場景名稱")
     }
 
     /// <summary>
@@ -82,6 +83,16 @@ public class GameManager : MonoBehaviour
         if (life == 0)
             final.SetActive(true);
     }
+
+    /// <summary>
+    /// 添加分數與更新分數介面
+    /// </summary>
+    /// <param name="add">要添加多少分數</param>
+    //public void AddScore(int add)
+    //{
+        //score += add;
+        //textScore.text = "× " + score;
+    //}
 
     /// <summary>
     /// 更新生命介面
