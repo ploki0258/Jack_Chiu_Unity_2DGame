@@ -296,7 +296,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 108930695}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1196083376}
+        m_MethodName: Replay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &108930695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1253,7 +1264,6 @@ MonoBehaviour:
   radius: 0.1
   floor: {fileID: 135953089}
   textScore: {fileID: 533014473}
-  score: 0
 --- !u!50 &796424953
 Rigidbody2D:
   serializedVersion: 4
@@ -1699,7 +1709,6 @@ MonoBehaviour:
   - {fileID: 1708150640}
   textTime: {fileID: 2086128669}
   final: {fileID: 148851195}
-  textScore: {fileID: 533014473}
 --- !u!4 &1196083377
 Transform:
   m_ObjectHideFlags: 0
@@ -1982,7 +1991,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1522926510}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1196083376}
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1522926510
 MonoBehaviour:
   m_ObjectHideFlags: 0

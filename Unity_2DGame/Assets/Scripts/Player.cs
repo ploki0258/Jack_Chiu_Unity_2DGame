@@ -26,9 +26,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer spr;
     private float hp = 100;
     private float hpMax;
-    private Image hpHeart_1;
-    private Image hpHeart_2;
-    private Image hpHeart_3;
+    private bool dead;
     private GameManager gm;
 
     private void Awake()
@@ -108,6 +106,8 @@ public class Player : MonoBehaviour
         ani.SetTrigger("死亡觸發");
         // 關閉腳本
         this.enabled = false;
+        dead = true;
+        gm.GameOver(); // 當玩家死亡時呼叫gm的GameOver方法
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
