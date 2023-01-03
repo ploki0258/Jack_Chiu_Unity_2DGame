@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text textTime;
     [Header("結束畫面")]
     [SerializeField] GameObject final;
-
+    
     public static int life = 3;
     public static int time;
     public static int score = 0;
@@ -20,6 +20,24 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         SetLife();
+    }
+
+    private void Start()
+    {
+       textTime = GameObject.Find("時間").GetComponent<Text>(); // 將遊戲場景上名為時間的物件及其Text存放至textTime欄位內
+    }
+
+    public void Update()
+    {
+        Update();
+    }
+
+    /// <summary>
+    /// 更新時間介面
+    /// </summary>
+    private void Updatetime()
+    {
+        textTime.text = "時間：" + Time.timeSinceLevelLoad.ToString("F2"); // 時間文字介面 = 時間： + 載入場景時間(當下載入場景經過多少時間)
     }
 
     /// <summary>
