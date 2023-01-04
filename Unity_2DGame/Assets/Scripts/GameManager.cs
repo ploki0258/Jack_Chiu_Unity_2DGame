@@ -85,16 +85,6 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 添加分數與更新分數介面
-    /// </summary>
-    /// <param name="add">要添加多少分數</param>
-    //public void AddScore(int add)
-    //{
-        //score += add;
-        //textScore.text = "× " + score;
-    //}
-
-    /// <summary>
     /// 更新生命介面
     /// </summary>
     private void SetLife()

@@ -74,6 +74,18 @@ public class Player : MonoBehaviour
             //this.transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
 
+        // 如果 (按下D或右鍵) 及 按下Shift鍵時
+        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && Input.GetKey(KeyCode.LeftShift))
+        {
+            spr.flipX = false;
+            rig.velocity = new Vector2(ad * runSpeed * 2.0f, rig.velocity.y); // 加速
+        }
+        // 如果(按下A或左鍵) 及 按下Shift鍵時
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && Input.GetKey(KeyCode.LeftShift))
+        {
+            spr.flipX = true;
+            rig.velocity = new Vector2(ad * runSpeed * 2.0f, rig.velocity.y); // 加速
+        }
     }
 
     /// <summary>
@@ -110,6 +122,10 @@ public class Player : MonoBehaviour
         gm.GameOver(); // 當玩家死亡時呼叫gm的GameOver方法
     }
 
+    /// <summary>
+    /// 道具機制：碰到特定tag物件時觸發
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 如果碰到tag = "trap"的物件
@@ -133,12 +149,6 @@ public class Player : MonoBehaviour
         {
             score += 10;
             textScore.text = "× " + score;
-        }
-
-        if (collision.tag == "heart")
-        {
-            GameManager.life++;
-            float life = Mathf.Clamp(GameManager.life, 0f, 3f);
         }
 
         // 刪除(碰到物件.遊戲物件)
