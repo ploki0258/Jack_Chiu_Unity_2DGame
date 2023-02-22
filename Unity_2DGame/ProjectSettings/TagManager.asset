@@ -7,6 +7,8 @@ TagManager:
   - trap
   - gem
   - heart
+  - ladder
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - 
   - floor
-  - 
+  - ladder
   - 
   - 
   - 
@@ -43,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: floor
+    uniqueID: 3690610045
     locked: 0

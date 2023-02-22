@@ -181,9 +181,10 @@ public class Player : MonoBehaviour
         Gizmos.DrawSphere(new Vector2(this.transform.position.x, this.transform.position.y) + offset, radius);
     }
 
-    //private void FixedUpdate()
-    //{
-    //    isGrounded = Physics.Raycast(this.transform.position, Vector2.down, 99.0f);
-    //}
-
+    /*
+    private void FixedUpdate()
+    {
+        isGrounded = Physics2D.Raycast(this.transform.position, Vector2.down, 99.0f);
+    }
+    */
 }
