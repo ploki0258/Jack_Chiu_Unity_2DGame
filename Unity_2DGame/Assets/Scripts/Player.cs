@@ -20,6 +20,14 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject floor;
     [Header("分數文字介面")]
     [SerializeField] Text textScore;
+    [Header("鑽石音效")]
+    public AudioClip gemSound;
+    [Header("陷阱音效")]
+    public AudioClip trapSound;
+    [Header("遊戲音樂")]
+    public AudioClip starSound;
+    [Header("遊戲結束音樂")]
+    public AudioClip gameoverSound;
 
     private Rigidbody2D rig;
     private Animator ani;
@@ -27,6 +35,8 @@ public class Player : MonoBehaviour
     private bool dead;
     private GameManager gm;
     // private float hp = 100;
+
+    private SoundManager soundManager;
 
     private void Awake()
     {
@@ -39,6 +49,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         // hpMax = hp;
+        soundManager = FindObjectOfType<SoundManager>();
+        soundManager.PlayBGM(starSound, true);
     }
 
     private void Update()
@@ -141,6 +153,18 @@ public class Player : MonoBehaviour
             if (GameManager.life == 0)
             {
                 Dead();
+
+                soundManager.PlayBGM(gameoverSound, false);
+            }
+
+            // 如果 life 不為 0
+            if (GameManager.life != 0)
+            {
+                soundManager.PlaySound(trapSound);      // 音效管理器.播放音效(陷阱音效)
+            }
+            else
+            {
+                soundManager.enabled = false;           // 取消音效管理器
             }
         }
 
@@ -149,6 +173,16 @@ public class Player : MonoBehaviour
         {
             score += 10;
             textScore.text = "× " + score;
+
+            // 如果 life 不為 0
+            if (GameManager.life != 0)
+            {
+                soundManager.PlaySound(gemSound);       // 音效管理器.播放音效(鑽石音效)
+            }
+            else
+            {
+                soundManager.enabled = false;           // 取消音效管理器
+            }
         }
 
         // 刪除(碰到物件.遊戲物件)

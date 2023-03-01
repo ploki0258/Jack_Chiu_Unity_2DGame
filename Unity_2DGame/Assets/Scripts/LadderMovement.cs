@@ -22,8 +22,6 @@ public class LadderMovement : MonoBehaviour
         {
             isClimbing = true;
         }
-
-        Debug.Log(isLadder);
     }
 
     private void FixedUpdate()
@@ -41,18 +39,20 @@ public class LadderMovement : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ladder"))
+        if (collision.tag == "Ladder")
         {
             isLadder = true;
+            Debug.Log("進入範圍");
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ladder"))
+        if (collision.tag == "Ladder")
         {
             isLadder = false;
             isClimbing = false;
+            Debug.Log("離開範圍");
         }
     }
 }
